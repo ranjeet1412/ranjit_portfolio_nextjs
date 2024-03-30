@@ -1,5 +1,4 @@
 "use client"
-
 import React, { useState } from 'react';
 
 const Experience = () => {
@@ -58,7 +57,7 @@ const Experience = () => {
           <div className="info-text">
             <ul className="company-list">
               {companies.map((company, index) => (
-                <li key={index} onClick={() => activeLink(index)}>
+                <li key={company.name} onClick={() => activeLink(index)}>
                   <button className={index === activeTab ? 'active-company' : 'company'}>
                     {company.name}
                   </button>
@@ -66,23 +65,27 @@ const Experience = () => {
               ))}
             </ul>
             <div className="company-info">
-              <h4 className="company-title">
-                <span>{companies[activeTab].description.position}</span>
-                <span>
-                  <span style={{ color: 'rgb(100, 255, 218)' }}>&nbsp;@&nbsp;</span>
-                  <a href={companies[activeTab].description.link} target="_blank" rel="noopener noreferrer" className="company-link">
-                    {companies[activeTab].description.companyName}
-                  </a>
-                </span>
-              </h4>
-              <div className="work-dates">
-                {companies[activeTab].description.startDate} - {companies[activeTab].description.lastDate}
-              </div>
-              <ul className="work-details">
-                {companies[activeTab].description.details.map((detail, index) => (
-                  <li key={index} className="description-line">{detail}</li>
-                ))}
-              </ul>
+              {companies[activeTab] && (
+                <>
+                  <h4 className="company-title">
+                    <span>{companies[activeTab].description.position}</span>
+                    <span>
+                      <span style={{ color: 'rgb(100, 255, 218)' }}>&nbsp;@&nbsp;</span>
+                      <a href={companies[activeTab].description.link} target="_blank" rel="noopener noreferrer" className="company-link">
+                        {companies[activeTab].description.companyName}
+                      </a>
+                    </span>
+                  </h4>
+                  <div className="work-dates">
+                    {companies[activeTab].description.startDate} - {companies[activeTab].description.lastDate}
+                  </div>
+                  <ul className="work-details">
+                    {companies[activeTab].description.details.map((detail, index) => (
+                      <li key={index} className="description-line">{detail}</li>
+                    ))}
+                  </ul>
+                </>
+              )}
             </div>
           </div>
         </div>

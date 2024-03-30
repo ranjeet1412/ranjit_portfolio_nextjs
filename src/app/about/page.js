@@ -1,8 +1,9 @@
+"use client"
 import React from 'react';
 
 const About = () => {
   const skills = [
-    "HTML & (S)CSS",
+    "HTML &amp; (S)CSS",
     "JavaScript (ES6+)",
     "Typescript",
     "Next.js",
@@ -37,7 +38,7 @@ const About = () => {
         <div className="about-content">
           <div className="info-text">
             <p className="p1">
-              Hello! I'm Ranjit, a software engineer based in Ahmedabad, who enjoys
+              Hello! I&apos;m Ranjit, a software engineer based in Ahmedabad, who enjoys
               building things that live on the internet. I develop websites and
               web apps that provide intuitive, pixel-perfect user interfaces with
               efficient and modern backends.
@@ -53,7 +54,7 @@ const About = () => {
               projects on a daily basis.
             </p>
             <p className="list-heading">
-              Here are a few technologies I've been working with recently:
+              Here are a few technologies I&apos;ve been working with recently:
             </p>
             <ul className="skill-grid">
               {skills.map((skill, index) => (
