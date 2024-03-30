@@ -1,20 +1,19 @@
 "use client"
-import React, { useEffect, useState } from "react";
 import Footer from "@/component/Footer";
 import LeftSideBar from "@/component/LeftSideBar";
 import MainContent from "@/component/MainContent";
 import NavBar from "@/component/Navbar";
 import RightSideBar from "@/component/RightSideBar";
+import Image from "next/image";
+import { useEffect, useState } from "react";
 
 export default function Home() {
-  const [screenWidth, setScreenWidth] = useState(
-    typeof window !== "undefined" ? window.innerWidth : 0
-  );
+  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
   const [navbarState, setNavbarState] = useState(null);
 
   const hideNavbar = () => {
     setNavbarState(false);
-    document.body.style.overflowY = "auto";
+    document.body.style.overflowY = 'auto';
   };
 
   const navBarState = (navbarState) => {
@@ -26,16 +25,18 @@ export default function Home() {
       setScreenWidth(window.innerWidth);
     };
 
-    window.addEventListener("resize", handleResize);
+    window.addEventListener('resize', handleResize);
 
     return () => {
-      window.removeEventListener("resize", handleResize);
+      window.removeEventListener('resize', handleResize);
     };
   }, []);
 
   return (
     <div className="landing-page">
-      <NavBar navState={navbarState} hideNavbar={hideNavbar} navBarState={navBarState} />
+      <div>
+        <NavBar navState={navbarState} hideNavbar={hideNavbar} navBarState={navBarState} />
+      </div>
       <div className="content">
         {screenWidth > 768 && (
           <div className="sidebars">
@@ -47,7 +48,7 @@ export default function Home() {
           <MainContent onClick={hideNavbar} />
         </div>
       </div>
-      <Footer />
+      <Footer/>
     </div>
   );
 }

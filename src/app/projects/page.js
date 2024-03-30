@@ -1,19 +1,20 @@
 "use client"
-
 import React, { useState } from 'react';
 
 const Projects = () => {
+
   const [activeTab, setActiveTab] = useState(0);
+
 
   const projects = [
     {
       name: "My Portfolio",
       description: {
         position: "Personal Portfolio",
-        companyName: "Next.js",
+        companyName: "NextJs",
         link: "https://www.linkedin.com/in/talentroots-technologies",
         details: [
-          "I built my portfolio using Next.js.",
+          "I have build my portfolio using nextjs.",
         ]
       }
     },
@@ -24,7 +25,7 @@ const Projects = () => {
         companyName: "Instant Shortcode App",
         link: "https://apps.shopify.com/shortcode-app",
         details: [
-          "I built an instant shortcode app using Shopify node template, and it is live on the Shopify app store.",
+          "I have build instant shortcode app using shopify node template and currently it is live on shopify app store.",
         ]
       }
     },
@@ -35,7 +36,7 @@ const Projects = () => {
         companyName: "Chat Application",
         link: "https://github.com/ranjitbaldaniya/chat-app",
         details: [
-          "I built a real-time chat application using the MERN stack, completed token-based authentication, and used socket.io.",
+          "I have build Real Time Chat Application using MERN stack, completed token based authentication and used socket.io",
         ]
       }
     },
@@ -59,13 +60,25 @@ const Projects = () => {
         id="projects"
       >
         <h3 className="section-heading">Some Things I've Built</h3>
+        <div className="about-content">
+          {/* <div className="info-text">
+            Lorem Ipsum is simply dummy text of the printing and typesetting
+            industry. Lorem Ipsum has been the industry's standard dummy text
+            ever since the 1500s, when an unknown printer took a galley of
+            type and scrambled it to make a type specimen book. It has survived
+            not only five centuries, but also the leap into electronic
+            typesetting, remaining essentially unchanged. It was popularised in
+            the 1960s with the release of Letraset sheets containing Lorem
+            Ipsum passages, and more recently with desktop publishing software
+            like Aldus PageMaker including versions of Lorem Ipsum.
+          </div> */}
         <div className="experience-content">
           <div className="info-text">
             <ul className="company-list">
-              {projects.map((project, index) => (
+              {projects.map((company, index) => (
                 <li key={index} onClick={() => activeLink(index)}>
                   <button className={index === activeTab ? 'active-company' : 'company'}>
-                    {project.name}
+                    {company.name}
                   </button>
                 </li>
               ))}
@@ -80,6 +93,9 @@ const Projects = () => {
                   </a>
                 </span>
               </h4>
+              {/* <div className="work-dates">
+                {projects[activeTab].description.startDate} - {projects[activeTab].description.lastDate}
+              </div> */}
               <ul className="work-details">
                 {projects[activeTab].description.details.map((detail, index) => (
                   <li key={index} className="description-line">{detail}</li>
@@ -87,6 +103,7 @@ const Projects = () => {
               </ul>
             </div>
           </div>
+        </div>
         </div>
       </div>
     </div>
