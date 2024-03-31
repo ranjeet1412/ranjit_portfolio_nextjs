@@ -59,7 +59,7 @@ const Projects = () => {
         className="section projects"
         id="projects"
       >
-        <h3 className="section-heading">Some Things I've Built</h3>
+        <h3 className="section-heading">Some Things I&apos;ve Built</h3>
         <div className="about-content">
           {/* <div className="info-text">
             Lorem Ipsum is simply dummy text of the printing and typesetting

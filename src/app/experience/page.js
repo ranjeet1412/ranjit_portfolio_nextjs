@@ -53,7 +53,7 @@ const Experience = () => {
         className="section experience"
         id="experience"
       >
-        <h3 className="section-heading">Where I've Worked</h3>
+        <h3 className="section-heading">Where I&apos;ve Worked</h3>
         <div className="experience-content">
           <div className="info-text">
             <ul className="company-list">

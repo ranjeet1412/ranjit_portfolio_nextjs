@@ -10,7 +10,7 @@ const Intro = () => {
           I build things for the web.
         </div>
         <div className="intro-description animated fadeInUp delay-3s">
-          I'm a software engineer based in Ahmedabad specializing in building and
+          I&apos;m a software engineer based in Ahmedabad specializing in building and
           occasionally designing high-quality websites and applications.
         </div>
         <div className="mail-link-container animated fadeInUp delay-4s">
