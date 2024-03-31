@@ -5,7 +5,6 @@ import { useRouter } from "next/navigation";
 
 
 const NavBar = ({ navState }) => {
-  const [mouseOverLogo, setMouseOverLogo] = useState(false);
   const [scrollPosition, setScrollPosition] = useState(null);
   const [showNav, setShowNav] = useState(navState);
 
