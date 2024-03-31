@@ -14,13 +14,13 @@ const Contact = () => {
         className="section contact"
         id="contact"
       >
-        <div className="section-heading">What's Next?</div>
+        <div className="section-heading">What&apos;s Next?</div>
         <div className="about-content">
           <div className="contact-heading">Get In Touch</div>
           <div className="info-text">
-            Although I'm not currently looking for freelance opportunities, my
+            Although I&apos;m not currently looking for freelance opportunities, my
             inbox is always open. Whether for a potential project or just to say
-            hi, I'll try my best to answer your email!
+            hi, I&apos;ll try my best to answer your email!
           </div>
           <div className="mail-link-container">
             <div className="link-box">
