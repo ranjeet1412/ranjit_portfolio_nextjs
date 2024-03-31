@@ -8,7 +8,8 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 
 export default function Home() {
-  const [screenWidth, setScreenWidth] = useState();
+  // console.log("window.innerWidth==>" , window.innerWidth)
+  const [screenWidth, setScreenWidth] = useState(1707);
   const [navbarState, setNavbarState] = useState(null);
 
   const hideNavbar = () => {
