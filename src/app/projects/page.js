@@ -1,113 +1,112 @@
-"use client"
-import React, { useState } from 'react';
+'use client';
 
-const Projects = () => {
+import React from 'react';
+import { IconGitHub, IconExternal } from '@/component/icons';
 
-  const [activeTab, setActiveTab] = useState(0);
-
-
-  const projects = [
+const FeaturedProjects = () => {
+  const featured = [
     {
-      name: "My Portfolio",
-      description: {
-        position: "Personal Portfolio",
-        companyName: "NextJs",
-        link: "https://www.linkedin.com/in/talentroots-technologies",
-        details: [
-          "I have build my portfolio using nextjs.",
-        ]
-      }
+      title: 'Suqoof',
+      description:
+        'A modern hospitality and real estate platform featuring dedicated multi-tier role management for guests, hosts, suppliers, and administrators. Built with Next.js, featuring secure Google and Apple authentication, dynamic booking workflows, and seamless Laravel REST API integration.',
+      tech: ['Next.js', 'TypeScript', 'SCSS', 'Google & Apple Auth', 'Laravel API', 'React Hook Form'],
+      external: 'https://www.suqoof.com/',
+      cover: '/assets/projects/suqoof.png',
     },
     {
-      name: "Shortcode App",
-      description: {
-        position: "Instant Shortcode App",
-        companyName: "Instant Shortcode App",
-        link: "https://apps.shopify.com/shortcode-app",
-        details: [
-          "I have build instant shortcode app using shopify node template and currently it is live on shopify app store.",
-        ]
-      }
+      title: 'Kaabil.me',
+      description:
+        'An intuitive EdTech platform empowering learners and job seekers with modern career development, structured learning journeys, and skill enhancement tools. Engineered with Next.js, featuring modular component architecture, dynamic student progress tracking, and responsive user experiences.',
+      tech: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS', 'Redux'],
+      external: 'https://kaabil.me/',
+      cover: '/assets/projects/kaabil.png',
     },
     {
-      name: "Chat App",
-      description: {
-        position: "Chat Application",
-        companyName: "Chat Application",
-        link: "https://github.com/ranjitbaldaniya/chat-app",
-        details: [
-          "I have build Real Time Chat Application using MERN stack, completed token based authentication and used socket.io",
-        ]
-      }
+      title: 'Tradeon.ai',
+      description:
+        'A financial market intelligence application providing traders with live stock market news, predictive insights, and comprehensive trading dashboards. Built authentication flows, real-time analytics visualizations, and scalable AWS cloud backend integrations.',
+      tech: ['React', 'AWS', 'Node.js', 'Redux', 'Financial APIs'],
+      external: 'https://tradeon.ai/',
+      cover: '/assets/projects/tradeon.png',
     },
   ];
 
-  const activeLink = (clickedTab) => {
-    setActiveTab(clickedTab);
-  };
-
   return (
-    <div className="projects-container">
-      <div
-        data-aos="fadeInUpBig"
-        data-aos-offset="100"
-        data-aos-delay="500"
-        data-aos-duration="1000"
-        data-aos-easing="ease-in"
-        data-aos-anchor-placement="top-bottom"
-        data-aos-once="true"
-        className="section projects"
-        id="projects"
-      >
-        <h3 className="section-heading">Some Things I&apos;ve Built</h3>
-        <div className="about-content">
-          {/* <div className="info-text">
-            Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry. Lorem Ipsum has been the industry's standard dummy text
-            ever since the 1500s, when an unknown printer took a galley of
-            type and scrambled it to make a type specimen book. It has survived
-            not only five centuries, but also the leap into electronic
-            typesetting, remaining essentially unchanged. It was popularised in
-            the 1960s with the release of Letraset sheets containing Lorem
-            Ipsum passages, and more recently with desktop publishing software
-            like Aldus PageMaker including versions of Lorem Ipsum.
-          </div> */}
-        <div className="experience-content">
-          <div className="info-text">
-            <ul className="company-list">
-              {projects.map((company, index) => (
-                <li key={index} onClick={() => activeLink(index)}>
-                  <button className={index === activeTab ? 'active-company' : 'company'}>
-                    {company.name}
-                  </button>
-                </li>
-              ))}
-            </ul>
-            <div className="company-info">
-              <h4 className="company-title">
-                <span>{projects[activeTab].description.position}</span>
-                <span>
-                  <span style={{ color: 'rgb(100, 255, 218)' }}>&nbsp;@&nbsp;</span>
-                  <a href={projects[activeTab].description.link} target="_blank" rel="noopener noreferrer" className="company-link">
-                    {projects[activeTab].description.companyName}
+    <section id="projects">
+      <h2 className="numbered-heading">
+        <span className="number-prefix">03.</span>Some Things I’ve Built
+      </h2>
+
+      <ul className="styled-projects-grid">
+        {featured.map((project, i) => (
+          <li key={i} className="styled-project">
+            <div className="project-content">
+              <div>
+                <p className="project-overline">Featured Project</p>
+
+                <h3 className="project-title">
+                  <a href={project.external} target="_blank" rel="noopener noreferrer">
+                    {project.title}
                   </a>
-                </span>
-              </h4>
-              {/* <div className="work-dates">
-                {projects[activeTab].description.startDate} - {projects[activeTab].description.lastDate}
-              </div> */}
-              <ul className="work-details">
-                {projects[activeTab].description.details.map((detail, index) => (
-                  <li key={index} className="description-line">{detail}</li>
-                ))}
-              </ul>
+                </h3>
+
+                <div className="project-description">
+                  <p>{project.description}</p>
+                </div>
+
+                <ul className="project-tech-list">
+                  {project.tech.map((tech, j) => (
+                    <li key={j}>{tech}</li>
+                  ))}
+                </ul>
+
+                <div className="project-links">
+                  {project.cta && (
+                    <a
+                      href={project.cta}
+                      aria-label="Course Link"
+                      className="cta"
+                      target="_blank"
+                      rel="noopener noreferrer">
+                      Learn More
+                    </a>
+                  )}
+                  {project.github && (
+                    <a
+                      href={project.github}
+                      aria-label="GitHub Link"
+                      target="_blank"
+                      rel="noopener noreferrer">
+                      <IconGitHub />
+                    </a>
+                  )}
+                  {project.external && !project.cta && (
+                    <a
+                      href={project.external}
+                      aria-label="External Link"
+                      className="external"
+                      target="_blank"
+                      rel="noopener noreferrer">
+                      <IconExternal />
+                    </a>
+                  )}
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-        </div>
-      </div>
-    </div>
+
+            <div className="project-image">
+              <a
+                href={project.external || project.github || '#'}
+                target="_blank"
+                rel="noopener noreferrer">
+                <img src={project.cover} alt={project.title} className="img" />
+              </a>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </section>
   );
 };
 
-export default Projects;
+export default FeaturedProjects;

@@ -1,20 +1,23 @@
-import About from '@/app/about/page';
-import Contact from '@/app/contact/page';
-import Experience from '@/app/experience/page';
-import Intro from '@/app/intro/page';
-import Projects from '@/app/projects/page';
-import React from 'react';
+'use client';
 
+import React from 'react';
+import Intro from '@/app/intro/page';
+import About from '@/app/about/page';
+import Experience from '@/app/experience/page';
+import Projects from '@/app/projects/page';
+import OtherProjects from '@/component/OtherProjects';
+import Contact from '@/app/contact/page';
 
 const MainContent = () => {
   return (
-    <div className="main-container">
-    <Intro/>
-    <About/>
-    <Experience/>
-    <Projects/>
-    <Contact/>
-    </div>
+    <main id="content">
+      <Intro />
+      <About />
+      <Experience />
+      <Projects />
+      <OtherProjects />
+      <Contact />
+    </main>
   );
 };
 

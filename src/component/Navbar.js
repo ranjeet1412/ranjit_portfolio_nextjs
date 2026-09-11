@@ -1,99 +1,141 @@
-"use client"
+'use client';
 
-import { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
+import React, { useState, useEffect, useRef } from 'react';
+import { IconLogo, IconHex } from '@/component/icons';
+import useScrollDirection from '@/hooks/useScrollDirection';
+import useOnClickOutside from '@/hooks/useOnClickOutside';
 
+const NavBar = () => {
+  const [scrolledToTop, setScrolledToTop] = useState(true);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const scrollDirection = useScrollDirection({ initialDirection: 'up' });
 
-const NavBar = ({ navState }) => {
-  const [scrollPosition, setScrollPosition] = useState(null);
-  const [showNav, setShowNav] = useState(navState);
-
-  const router = useRouter();
-
-  const tabs = [
-    { href: "#about", text: "About", counter: "01." },
-    { href: "#experience", text: "Experience", counter: "02." },
-    { href: "#projects", text: "Projects", counter: "03." },
-    { href: "#contact", text: "Contact", counter: "04." },
+  const navLinks = [
+    { name: 'About', url: '#about' },
+    { name: 'Experience', url: '#jobs' },
+    { name: 'Work', url: '#projects' },
+    { name: 'Contact', url: '#contact' },
   ];
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrollPosition(window.scrollY);
-    };
+  const resumeUrl =
+    'https://docs.google.com/document/d/1haRoRKK5TlM2hv1omDwMA8v0fi_F52FkxCinRTdBoUk/edit?usp=sharing';
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+  const menuRef = useRef(null);
+  useOnClickOutside(menuRef, () => setMenuOpen(false));
+
+  const handleScroll = () => {
+    setScrolledToTop(window.pageYOffset < 50);
+  };
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const reloadPage = () => {
-    router.reload();
-  };
+  useEffect(() => {
+    if (menuOpen) {
+      document.body.classList.add('blur');
+    } else {
+      document.body.classList.remove('blur');
+    }
+  }, [menuOpen]);
 
-  const setFalse = () => {
-    setShowNav(false);
-    document.body.style.overflowY = "auto";
-  };
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth > 768) {
+        setMenuOpen(false);
+      }
+    };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
-  const toggleNavbar = () => {
-    setShowNav(!showNav);
-    document.body.style.overflowY = showNav ? "auto" : "hidden";
-  };
-  // https://github.com/ranjeet1412
+  let scrollClass = '';
+  if (scrollDirection === 'up' && !scrolledToTop) {
+    scrollClass = 'nav-up';
+  } else if (scrollDirection === 'down' && !scrolledToTop) {
+    scrollClass = 'nav-down';
+  }
+
   return (
-    <div
-      id="navbar"
-      className={`${
-        scrollPosition && scrollPosition > 40 ? "nav-bar-scrolled" : "nav-bar"
-      } animated slideInDown delay-1s`}
-    >
-      <a
-        href="/"
-        className="logo"
-        onClick={reloadPage}
-      >
-        <img
-          className="logo-image"
-          src="/assets/logo.png"
-          alt="Logo"
-        />
-      </a>
-      <div onClick={toggleNavbar} className="toggle-navbar-icon">
-        <img
-          src={`/assets/${!showNav ? "menu.svg" : "close.svg"}`}
-          className={`${!showNav ? "hamburger" : "close"}`}
-          alt="menu"
-        />
-      </div>
-      <div className={`${showNav ? "right-nav-bar-toggled" : "right-nav-bar"}`}>
-        <ol className="nav-links">
-          {tabs.map((tab, index) => (
-            <li key={index}>
-              <span className="counter">{tab.counter}</span>
-              <a
-                onClick={setFalse}
-                className="links"
-                href={tab.href}
-                // onClick={() => router.push(tab.href)}
-              >
-                {tab.text}
-              </a>
-            </li>
-          ))}
-        </ol>
-        <div className="resume-container">
-          <a
-            onClick={setFalse}
-            className="resume"
-            href="https://docs.google.com/document/d/1haRoRKK5TlM2hv1omDwMA8v0fi_F52FkxCinRTdBoUk/edit?usp=sharing"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Resume
+    <header className={`styled-header ${scrollClass}`}>
+      <nav className="styled-nav">
+        {/* Hexagon Logo */}
+        <div className="logo" tabIndex="-1">
+          <a href="/" aria-label="home" className="anim-fade">
+            <div className="hex-container">
+              <IconHex />
+            </div>
+            <div className="logo-container">
+              <IconLogo />
+            </div>
           </a>
         </div>
-      </div>
-    </div>
+
+        {/* Desktop Links */}
+        <div className="styled-links">
+          <ol>
+            {navLinks.map(({ name, url }, i) => (
+              <li
+                key={i}
+                className="anim-fadedown"
+                style={{ animationDelay: `${i * 100 + 100}ms` }}>
+                <a href={url}>
+                  <span className="nav-counter">0{i + 1}.</span>
+                  {name}
+                </a>
+              </li>
+            ))}
+          </ol>
+          <div
+            className="anim-fadedown"
+            style={{ animationDelay: `${navLinks.length * 100 + 100}ms` }}>
+            <a
+              className="small-button resume-button"
+              href={resumeUrl}
+              target="_blank"
+              rel="noopener noreferrer">
+              Resume
+            </a>
+          </div>
+        </div>
+
+        {/* Mobile Hamburger & Drawer */}
+        <div className="styled-menu" ref={menuRef}>
+          <button
+            className={`styled-hamburger ${menuOpen ? 'open' : ''}`}
+            onClick={() => setMenuOpen(!menuOpen)}
+            aria-label="Menu">
+            <div className="ham-box">
+              <div className="ham-box-inner" />
+            </div>
+          </button>
+
+          <aside className={`styled-sidebar ${menuOpen ? 'open' : ''}`} aria-hidden={!menuOpen}>
+            <nav>
+              <ol>
+                {navLinks.map(({ name, url }, i) => (
+                  <li key={i}>
+                    <a href={url} onClick={() => setMenuOpen(false)}>
+                      <span className="nav-counter">0{i + 1}.</span>
+                      {name}
+                    </a>
+                  </li>
+                ))}
+              </ol>
+              <a
+                href={resumeUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="big-button resume-link"
+                onClick={() => setMenuOpen(false)}>
+                Resume
+              </a>
+            </nav>
+          </aside>
+        </div>
+      </nav>
+    </header>
   );
 };
 

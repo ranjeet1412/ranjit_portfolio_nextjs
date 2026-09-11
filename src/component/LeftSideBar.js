@@ -1,41 +1,47 @@
-"use client"
+'use client';
+
 import React from 'react';
-import Image from 'next/image';
+import { IconGitHub, IconInstagram, IconTwitter, IconLinkedin } from '@/component/icons';
 
 const LeftSideBar = () => {
   const socials = [
     {
-      name: "Linkedin",
-      image: "/assets/linkedin.svg",
-      href: "https://www.linkedin.com/in/ranjit-baldaniya1412"
+      name: 'GitHub',
+      url: 'https://github.com/ranjeet1412',
+      icon: <IconGitHub />,
     },
     {
-      name: "Twitter",
-      image: "/assets/twitter.svg",
-      href: "https://twitter.com/iRanjit_1412"
+      name: 'Instagram',
+      url: 'https://www.instagram.com/ranjit___2805',
+      icon: <IconInstagram />,
     },
     {
-      name: "Instagram",
-      image: "/assets/instagram.svg",
-      href: "https://www.instagram.com/ranjit___2805"
+      name: 'Twitter',
+      url: 'https://twitter.com/iRanjit_1412',
+      icon: <IconTwitter />,
     },
     {
-      name: "Github",
-      image: "/assets/github.svg",
-      href: "https://github.com/ranjeet1412"
-    }
+      name: 'LinkedIn',
+      url: 'https://www.linkedin.com/in/ranjit-baldaniya1412',
+      icon: <IconLinkedin />,
+    },
   ];
 
   return (
-    <div className="left-side-bar animated fadeInLeft">
-      <div className="left-side-bar-container">
-        <div className="vertical-sidebar-line" />
+    <div className="styled-side side-left anim-fade" style={{ animationDelay: '1000ms' }}>
+      <ul className="styled-social-list">
         {socials.map((social, index) => (
-          <a key={index} href={social.href} className="social-link" target="_blank" rel="noopener noreferrer">
-            <Image src={social.image} alt={social.name} width={24} height={24} />
-          </a>
+          <li key={index}>
+            <a
+              href={social.url}
+              aria-label={social.name}
+              target="_blank"
+              rel="noopener noreferrer">
+              {social.icon}
+            </a>
+          </li>
         ))}
-      </div>
+      </ul>
     </div>
   );
 };
