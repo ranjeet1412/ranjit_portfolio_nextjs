@@ -1331,6 +1331,7 @@ section {
     }
     .project-image {
       grid-column: 1 / 8;
+      grid-row: 1 / -1;
 
       @media (max-width: 768px) {
         grid-column: 1 / -1;
@@ -1533,6 +1534,7 @@ section {
   }
 
   .project-image {
+    grid-row: 1 / -1;
     box-shadow: 0 10px 30px -15px var(--navy-shadow);
     position: relative;
     z-index: 1;
