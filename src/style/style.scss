@@ -559,7 +559,26 @@ a {
   display: none;
 
   @media (max-width: 768px) {
-    display: block;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .mobile-resume-button {
+    display: none;
+
+    @media (max-width: 768px) {
+      display: inline-block;
+      padding: 0.55rem 0.85rem;
+      font-size: var(--fz-xs);
+      line-height: 1;
+      margin: 0;
+      z-index: 10;
+
+      &.hidden {
+        display: none !important;
+      }
+    }
   }
 }
 
@@ -730,9 +749,29 @@ a {
   }
 
   .resume-link {
-    padding: 18px 50px;
+    display: inline-block;
+    color: var(--green);
+    background-color: transparent;
+    border: 1px solid var(--green);
+    border-radius: var(--border-radius);
+    padding: 16px 45px;
     margin: 10% auto 0;
     width: max-content;
+    font-size: var(--fz-sm);
+    font-family: var(--font-mono);
+    line-height: 1;
+    text-decoration: none;
+    cursor: pointer;
+    transition: var(--transition);
+
+    &:hover,
+    &:focus,
+    &:active {
+      background-color: var(--green-tint);
+      outline: none;
+      box-shadow: 4px 4px 0 0 var(--green);
+      transform: translate(-4px, -4px);
+    }
   }
 }
 

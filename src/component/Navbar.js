@@ -102,6 +102,14 @@ const NavBar = () => {
 
         {/* Mobile Hamburger & Drawer */}
         <div className="styled-menu" ref={menuRef}>
+          <a
+            className={`small-button resume-button mobile-resume-button ${menuOpen ? 'hidden' : ''}`}
+            href={resumeUrl}
+            target="_blank"
+            rel="noopener noreferrer">
+            Resume
+          </a>
+
           <button
             className={`styled-hamburger ${menuOpen ? 'open' : ''}`}
             onClick={() => setMenuOpen(!menuOpen)}
@@ -127,7 +135,7 @@ const NavBar = () => {
                 href={resumeUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="big-button resume-link"
+                className="resume-button resume-link"
                 onClick={() => setMenuOpen(false)}>
                 Resume
               </a>
